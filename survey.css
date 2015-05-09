@@ -1,0 +1,31 @@
+body {
+    background-color: #7E8F7C;
+    padding-top: 7px;
+}
+
+button {
+    background-color: white;
+    border-radius: 5px;
+    width: 100px;
+}
+
+.main {
+    background-color: #FDF3E7; 
+    border-radius: 5px;
+    padding-top: 25px;
+    padding-left: 50px;
+    padding-right: 25px;
+    box-shadow: 10px 10px 5px #202020 ;
+    margin: auto;
+    height: 610px;
+    width: 400px;
+}
+
+header {
+    text-align: center;
+    font-size: 30px;
+}
+
+.yo {
+    background-color: blue;
+}

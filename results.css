@@ -1,0 +1,34 @@
+body {
+    background-color: #7E8F7C;
+    padding-top: 50px;
+}
+
+.main {
+    background-color: #FDF3E7; 
+    border-radius: 5px;
+    padding-top: 25px;
+    padding-left: 50px;
+    padding-right: 25px;
+    box-shadow: 10px 10px 5px #202020 ;
+    margin: auto;
+    height: 725px;
+    width: 500px;
+}
+
+header {
+    text-align: center;
+    font-size: 30px;
+}
+
+table {
+    border-color: 2px solid;
+    width: 75%;
+}
+
+tr {
+    border-color: red;
+}
+
+td {
+    border-color: red;
+}
