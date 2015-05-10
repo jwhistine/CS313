@@ -1,3 +1,14 @@
+<?php
+    // start ye old session
+    session_start();
+    
+    // this will not allow the user to go back after voting
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['submit'])) {
+            $_SESSION["hasVoted"] = \TRUE;
+        }
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
