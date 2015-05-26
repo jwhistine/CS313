@@ -15,8 +15,6 @@
     $password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
     $dbname = "php";
 	
-	echo "Username". $username . "Password" . $password;
-	
 	try { 
         $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname.";port=".$portNumber, $username, $password);
     	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
