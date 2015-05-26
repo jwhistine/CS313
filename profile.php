@@ -32,7 +32,9 @@
     echo "</form>";
 	echo "<div class=\"row\">";
     echo "<br>";
-	foreach ($db->query('SELECT name, gender, major, location, bday, email FROM profiles') as $info) {
+	$stmt = $pdo->prepare('SELECT name, gender, major, location, bday, email FROM profiles');
+	$stmt->execute();
+	while ($info = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo "<div class=\"col-md-4\">";
             echo "<img src=\"http://pickaface.net/includes/themes/clean/img/slide4.png\" class=\"img-thumbnail\" width=\"200\" height=\"236\"/>";
             echo "<div class=\"notification\">";
