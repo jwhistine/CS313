@@ -9,15 +9,16 @@
     </head>
     <body>
     <?php
-	try {
-           define('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST'));
-		   define('DB_PORT',getenv('OPENSHIFT_MYSQL_DB_PORT'));
-           define('DB_USER',getenv('OPENSHIFT_MYSQL_DB_USERNAME'));
-           define('DB_PASS',getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
-           $dbname = "project";
-
-           $dsn = 'mysql:dbname='.$dbname.';host='.DB_HOST.';port='.DB_PORT;
-           $sdb = new PDO($dsn, DB_USER, DB_PASS); 
+	$server = getenv('OPENSHIFT_MYSQL_DB_HOST');
+	$portNumber = getenv('OPENSHIFT_MYSQL_DB_PORT');
+    $username = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+    $password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+    $dbname = getenv('OPENSHIFT_APP_NAME');
+	
+	try { 
+        $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname.";port=".$portNumber, $username, $password);
+    	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 	}
 	catch (PDOException $ex) {
             echo "ERROR!: " . $ex->getMessage();
