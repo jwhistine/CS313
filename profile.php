@@ -21,8 +21,7 @@
     	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 	}
 	catch (PDOException $ex) {
-            echo "ERROR!: " . $ex->getMessage();
-            die();
+            die($ex->getMessage(););
 	}
 	echo "<br>";
 	echo "<div class=\"container\">";
