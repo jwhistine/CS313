@@ -1,5 +1,5 @@
 <?php
-    $username = $_POST['username'];
+    $user = $_POST['username'];
     $passwd   = $_POST['password'];
     $name     = $_POST['name'];
     $gender   = $_POST['gender'];
