@@ -1,10 +1,14 @@
 <?php
     $username = $_REQUEST['username'];
-    $pass     = $_REQUEST['password'];
+    $pass         = $_REQUEST['password'];
   
     try {
        
-			include "open_connection.php";
+			$server = getenv('OPENSHIFT_MYSQL_DB_HOST');
+			$portNumber = getenv('OPENSHIFT_MYSQL_DB_PORT');
+			$username = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+			$password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+			$dbname = "php";
             
             $connection = mysqli_connect($server, $username, $password, $dbname, $portNumber) or die("Server connection failed");
             

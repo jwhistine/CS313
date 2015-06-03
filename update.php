@@ -11,7 +11,15 @@
 
     try {
         
-        include "open_connection.php";
+        $server = getenv('OPENSHIFT_MYSQL_DB_HOST');
+		$portNumber = getenv('OPENSHIFT_MYSQL_DB_PORT');
+		$username = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+		$password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+		$dbname = "php";
+		
+		$pdo = new PDO("mysql:host=".$server.";dbname=".$dbname.";port=".$portNumber, $username, $password);
+    	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         
         /* set up each query for the update portion */
         $updateProfile = "UPDATE users SET user='$username', passwd='$password', name='$name', gender='$gender', major='$major', " .
