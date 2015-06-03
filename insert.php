@@ -16,7 +16,7 @@
 		$password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
 		$dbname = "php";
         
-        $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname.";port=".$portNumber, $user, $password);
+        $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname.";port=".$portNumber., $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		
@@ -29,8 +29,7 @@
                               'VALUES (:user, :passwd, :name, :gender, :major, :location, :bday, :email);';
 
         // user query and sanitization
-        $hobbyQuery = 'INSERT INTO hobbies (name) ' .
-								'VALUES (:name)';
+        $hobbyQuery = 'INSERT INTO hobbies (name) VALUES (:name)';
 
        // $hobbyId = "SELECT id FROM hobbies WHERE name='$hobbies';";
         
