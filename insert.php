@@ -10,7 +10,6 @@
     $email    = $_POST['email'];
 
     try {
-		echo "Hello There!!!!!!";
 		$server = getenv('OPENSHIFT_MYSQL_DB_HOST');
 		$portNumber = getenv('OPENSHIFT_MYSQL_DB_PORT');
 		$user = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
@@ -20,6 +19,8 @@
         $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname.";port=".$portNumber, $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+		
+		echo "Hello There!!!!!!";
 		
         /* set up each query for the insert portion */
 
