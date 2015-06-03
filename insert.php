@@ -9,12 +9,13 @@
     $hobbies  = $_POST['hobbies'];
     $email    = $_POST['email'];
 
-    try {
-		$server = getenv('OPENSHIFT_MYSQL_DB_HOST');
+	$server = getenv('OPENSHIFT_MYSQL_DB_HOST');
 		$portNumber = getenv('OPENSHIFT_MYSQL_DB_PORT');
 		$user = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
 		$password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
 		$dbname = "php";
+	
+    try {
         
         $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname.";port=".$portNumber., $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
