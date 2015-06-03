@@ -10,9 +10,16 @@
     $email    = $_REQUEST['email'];
 
     try {
+		$server = getenv('OPENSHIFT_MYSQL_DB_HOST');
+		$portNumber = getenv('OPENSHIFT_MYSQL_DB_PORT');
+		$username = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+		$password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+		$dbname = "php";
         
-        include "open_connection.php";
-        
+        $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname.";port=".$portNumber, $username, $password);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+		
         /* set up each query for the insert portion */
 
         // profile query
