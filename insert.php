@@ -1,4 +1,4 @@
-profile.<?php
+<?php
     $username = $_REQUEST['username'];
     $passwd   = $_REQUEST['password'];
     $name     = $_REQUEST['name'];
