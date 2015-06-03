@@ -16,6 +16,10 @@
     $dbname = "php";
 	
 	try { 
+		if (!isset($_COOKIE['user'])) {
+            header("Location: login.php");
+        }
+	
         $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname.";port=".$portNumber, $username, $password);
     	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -32,7 +36,7 @@
     echo "</form>";
 	echo "<div class=\"row\">";
     echo "<br>";
-	$stmt = $pdo->prepare('SELECT name, gender, major, location, bday, email FROM profiles');
+	$stmt = $pdo->prepare("SELECT name, gender, major, location, bday, email FROM users WHERE user = '".$_COOKIE['user']."'");
 	$stmt->execute();
 	while ($info = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo "<div class=\"col-md-4\">";

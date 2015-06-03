@@ -18,7 +18,7 @@
       					<input type="text" class="form-control" id="username" name="username">
     				</div>
     				<div class="form-group">
-      					<label for="pwd">Gender:</label>
+      					<label for="pwd">Password:</label>
       					<input type="text" class="form-control" id="password" name="password">
     				</div>
     				<div class="form-group">
