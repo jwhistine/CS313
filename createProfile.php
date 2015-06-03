@@ -12,7 +12,7 @@
         <div class="container">
         	<div class="jumbotron">
         		<h2>Please Tell Us About Yourself</h2>
-      			<form role="form" action="insert.php">
+      			<form role="form" action="insert.php" method="POST">
 					<div class="form-group">
       					<label for="usr">Username:</label>
       					<input type="text" class="form-control" id="username" name="username">

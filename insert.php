@@ -17,11 +17,11 @@
 
         // profile query
         $userQuery  = 'INSERT INTO users (user, passwd, name, gender, major, location, bday, email) ' .
-                      'VALUES (:user, :passwd, :name, :gender, :major, :location, :bday, :email);';
+                              'VALUES (:user, :passwd, :name, :gender, :major, :location, :bday, :email);';
 
         // user query and sanitization
         $hobbyQuery = 'INSERT INTO hobbies (name) ' .
-                      'VALUES (:name)';
+								'VALUES (:name)';
 
        // $hobbyId = "SELECT id FROM hobbies WHERE name='$hobbies';";
         
