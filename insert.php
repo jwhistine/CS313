@@ -10,6 +10,7 @@
     $email    = $_POST['email'];
 
     try {
+		echo "Hello There!!!!!!";
 		$server = getenv('OPENSHIFT_MYSQL_DB_HOST');
 		$portNumber = getenv('OPENSHIFT_MYSQL_DB_PORT');
 		$user = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
