@@ -17,7 +17,7 @@
 	
     try {
         
-        $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname.";port=".$portNumber., $user, $password);
+        $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname, $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		
