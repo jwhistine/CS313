@@ -1,13 +1,13 @@
 <?php
-    $username = $_POST['username'];
-    $passwd   = $_POST['password'];
-    $name     = $_POST['name'];
-    $gender   = $_POST['gender'];
-    $major    = $_POST['major'];
-    $location = $_POST['location'];
-    $bday     = $_POST['bday'];
-    $hobbies  = $_POST['hobbies'];
-    $email    = $_POST['email'];
+    $username = $_REQUEST['username'];
+    $passwd   = $_REQUEST['password'];
+    $name     = $_REQUEST['name'];
+    $gender   = $_REQUEST['gender'];
+    $major    = $_REQUEST['major'];
+    $location = $_REQUEST['location'];
+    $bday     = $_REQUEST['bday'];
+    $hobbies  = $_REQUEST['hobbies'];
+    $email    = $_REQUEST['email'];
 
 	$dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
 	$dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
