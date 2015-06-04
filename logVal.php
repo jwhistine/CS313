@@ -1,6 +1,6 @@
 <?php
-    $username = $_POST['username'];
-    $pass         = $_POST['password'];
+    $username = $_REQUEST['username'];
+    $pass         = $_REQUEST['password'];
   
     try {
 			$dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
@@ -20,6 +20,7 @@
             
             if ($count > 0) {
                 setcookie("user", $username, time() + (86400 * 30), "/");
+				echo "This is the cookie value: " . $_COOKIE['user'];
                 header("Location: profile.php");
             }
             else {
