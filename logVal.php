@@ -19,7 +19,7 @@
             $count = mysqli_num_rows($result);
             
             if ($count > 0) {
-                setcookie("user", $username, time(), "/.qit");
+                setcookie("user", $username, time(), "/");
                 header("Location: profile.php");
 				exit();
             }
