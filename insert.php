@@ -17,7 +17,7 @@
 	
     try {
         
-        $db = new PDO("mysql:host=$dbHost:dbname=$dbName", $dbUser, $dbPassword);
+        $db = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		echo "Hello There!!!!!!";
