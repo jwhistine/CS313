@@ -1,6 +1,6 @@
 <?php
-    $username = $_REQUEST['username'];
-    $pass         = $_REQUEST['password'];
+    $username = $_POST['username'];
+    $pass         = $_POST['password'];
   
     try {
 			$dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
