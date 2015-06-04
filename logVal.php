@@ -22,6 +22,7 @@
                 setcookie("user", $username, time() + (86400 * 30), "/");
 				echo "This is the cookie value: " . $_COOKIE['user'];
                 header("Location: profile.php");
+				echo "This is the cookie value: " . $_COOKIE['user'];
             }
             else {
                 header("Location: login.php");
