@@ -3,15 +3,15 @@
     $pass         = $_REQUEST['password'];
   
     try {
-       
-			$server = getenv('OPENSHIFT_MYSQL_DB_HOST');
-			$portNumber = getenv('OPENSHIFT_MYSQL_DB_PORT');
-			$username = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
-			$password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
-			$dbname = 'php';
+			$dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
+			$dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
+			$dbUser = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+			$dbPassword = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+			$dbName = 'php';
             
-            $connection = mysqli_connect($server, $username, $password, $dbname) or die("Server connection failed");
-            
+            $db = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
+            $connection = $db;
+			
             $stmt = "SELECT * FROM users WHERE user='".$username."' AND passwd='".$pass."'";  
             
             $result = mysqli_query($connection, $stmt);
