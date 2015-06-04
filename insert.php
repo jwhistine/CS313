@@ -19,8 +19,8 @@
         
         $db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", $dbUser, $dbPassword);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		echo "Hello There!!!!!!";
 		$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+		echo "Hello There!!!!!!";
 		
         /* set up each query for the insert portion */
 
@@ -30,14 +30,6 @@
 
         // user query and sanitization
         $hobbyQuery = 'INSERT INTO hobbies (name) VALUES (:name)';
-
-       // $hobbyId = "SELECT id FROM hobbies WHERE name='$hobbies';";
-        
-        //$cookie = $_COOKIE['user'];
-        
-        //$userHobbies = 'INSERT INTO user_hobbies (uId, hId) VALUES (:uId, :hId);';
-        
-        //'INSERT INTO user_hobbies (uId, hId) VALUES (:uId, hId)'
         
         // profile sanitize
         $stmt1 = $db->prepare($userQuery);
