@@ -8,9 +8,9 @@
 			$portNumber = getenv('OPENSHIFT_MYSQL_DB_PORT');
 			$username = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
 			$password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
-			$dbname = "php";
+			$dbname = 'php';
             
-            $connection = mysqli_connect($server, $username, $password, $dbname, $portNumber) or die("Server connection failed");
+            $connection = mysqli_connect($server, $username, $password, $dbname) or die("Server connection failed");
             
             $stmt = "SELECT * FROM users WHERE user='".$username."' AND passwd='".$pass."'";  
             

@@ -14,6 +14,7 @@
 	$dbUser = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
 	$dbPassword = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
 	$dbName = 'php';
+	
 	try { 
 		if (!isset($_COOKIE['user'])) {
             header("Location: login.php");
@@ -25,6 +26,7 @@
 	catch (PDOException $ex) {
             die($ex->getMessage());
 	}
+	
 	echo "<br>";
 	echo "<div class=\"container\">";
     echo "<div class=\"jumbotron\">";      
