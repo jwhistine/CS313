@@ -9,17 +9,17 @@
     $hobbies  = $_POST['hobbies'];
     $email    = $_POST['email'];
 
-	$server = getenv('OPENSHIFT_MYSQL_DB_HOST');
-		$portNumber = getenv('OPENSHIFT_MYSQL_DB_PORT');
-		$user = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
-		$password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
-		$dbname = "php";
+	$dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
+	$dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
+	$dbUser = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+	$dbPassword = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+	$dbName = 'php';
 	
     try {
         
-        $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname, $user, $password);
-		echo "Hello There!!!!!!";
+        $db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", $dbUser, $dbPassword);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		echo "Hello There!!!!!!";
 		$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		
         /* set up each query for the insert portion */
