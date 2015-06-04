@@ -19,10 +19,9 @@
             $count = mysqli_num_rows($result);
             
             if ($count > 0) {
-                setcookie("user", $username, 0, "/");
-				echo "This is the cookie value: " . $_COOKIE['user'];
+                setcookie("user", $username, 0);
                 header("Location: profile.php");
-				echo "This is the cookie value: " . $_COOKIE['user'];
+				exit();
             }
             else {
                 header("Location: login.php");
