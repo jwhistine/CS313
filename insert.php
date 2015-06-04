@@ -18,10 +18,9 @@
     try {
         
         $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname, $user, $password);
+		echo "Hello There!!!!!!";
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-		
-		echo "Hello There!!!!!!";
 		
         /* set up each query for the insert portion */
 

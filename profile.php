@@ -20,7 +20,7 @@
             header("Location: login.php");
         }
 	
-        $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname.";port=".$portNumber, $username, $password);
+        $pdo = new PDO("mysql:host=".$server.";dbname=".$dbname.";port=".$portNumber., $username, $password);
     	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 	}
