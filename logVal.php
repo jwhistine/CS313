@@ -10,11 +10,11 @@
 			$dbName = 'php';
             
             $db = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
-            $connection = $db;
+			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			
             $stmt = "SELECT * FROM users WHERE user='".$username."' AND passwd='".$pass."'";  
             
-            $result = mysqli_query($connection, $stmt);
+            $result = mysqli_query($db, $stmt);
             
             $count = mysqli_num_rows($result);
             
