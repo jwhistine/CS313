@@ -20,44 +20,74 @@
         $db = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		//$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-		echo "Hello There!!!!!!";
 		
+       $connection = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName) or die("Server connection failed");
+        
         /* set up each query for the insert portion */
 
-        // profile query
-        $userQuery  = 'INSERT INTO users (user, passwd, name, gender, major, location, bday, email) ' .
-                              'VALUES (:user, :passwd, :name, :gender, :major, :location, :bday, :email);';
+        $userExist = "SELECT id FROM hobbies WHERE name='".$username."'";
+        $result = mysqli_query($connection, $userExist);
+        $userId = '';
+        // hobbies sanitization 
+        while ($row = mysqli_fetch_assoc($result)) {
+            $userId = $row['id'];
+        }
+        if (empty($userId)) {
+            // profile query
+            $userQuery  = 'INSERT INTO users (user, passwd, name, gender, major, location, bday, email) ' .
+                      'VALUES (:user, :passwd, :name, :gender, :major, :location, :bday, :email);';
 
-        // user query and sanitization
-        $hobbyQuery = 'INSERT INTO hobbies (name) VALUES (:name)';
-        
-        // profile sanitize
-        $stmt1 = $db->prepare($userQuery);
-        $stmt1->bindParam(':user', $username);
-        $stmt1->bindParam(':passwd', $passwd);
-        $stmt1->bindParam(':name', $name);
-        $stmt1->bindParam(':gender', $gender);
-        $stmt1->bindParam(':major', $major);
-        $stmt1->bindParam(':location', $location);
-        $stmt1->bindParam(':bday', $bday);
-        $stmt1->bindParam(':email', $email);
-        $stmt1->execute();
-
-        // hobbies sanitization
-        $stmt3 = $db->prepare($hobbyQuery);
-        $stmt3->bindParam(':name', $hobbies);
-        $stmt3->execute();
+            // profile sanitize
+            $stmt1 = $db->prepare($userQuery);
+            $stmt1->bindParam(':user', $username);
+            $stmt1->bindParam(':passwd', $passwd);
+            $stmt1->bindParam(':name', $name);
+            $stmt1->bindParam(':gender', $gender);
+            $stmt1->bindParam(':major', $major);
+            $stmt1->bindParam(':location', $location);
+            $stmt1->bindParam(':bday', $bday);
+            $stmt1->bindParam(':email', $email);
+            $stmt1->execute();
+            
+            $result = mysqli_query($connection, $userExist);
+            $userId = '';
+            while ($row = mysqli_fetch_assoc($result)) {
+                $hobbyId = $row['id'];
+            }
+        } else {
+            $userQuery  = "UPDATE users set ".
+                          "passwd = '".$passwd."', ".
+                          "name = '".$name."', ".
+                          "gender = '".$gender."', ".
+                          "major = '".$major."', ".
+                          "location = '".$location."', ".
+                          "bday = '".$bday."', ".
+                          "email = '".$email."' ".
+                          " WHERE id = '".$UserId."'";    
+        }
+        $hobbyIdSql = "SELECT id FROM hobbies WHERE name='".trim($hobbies)."'";
+        $result = mysqli_query($connection, $hobbyIdSql);
+        $hobbyId = '';
+        if (empty($hobbyId)) {
+            $hobbyQuery = "INSERT INTO hobbies (name) VALUES ('".trim($hobbies)."')";
+            $stmt2 = $db->prepare($hobbyQuery);
+            $stmt2->execute();
+            $result = mysqli_query($connection, $hobbyIdSql);
+            while ($row = mysqli_fetch_assoc($result)) {
+                $hobbyId = $row['id'];
+            }
+        }
         
         // user_hobbies
-        //$stmt4 = $db->query($userHobbies);
-       // $stmt4->bindParam(':uId', $cookie);
-        //$stmt4->bindParam(':hId', $hobbyId);
-        //$stmt4->execute();
+        $userHobbies = "INSERT INTO user_hobbies (uId, hId) VALUES ('".$userId."','".$hobbyId."')";
+        $stmt4 = $db->prepare($userHobbies);
+        $stmt4->execute();
+        setcookie("user", $username, time() + (86400 * 30), "/");
     }
     catch (PDOException $ex) {
         echo "ERROR!: " . $ex->getMessage();
         die();
     }
-    header("Location: login.php");
+    header("Location: logVal.php?username=".$username.'&password='.$passwd);
     die();
 ?>
