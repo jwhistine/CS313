@@ -29,26 +29,42 @@
             die($ex->getMessage());
 	}
 	
+	$stmt = "SELECT name, gender, major, location, bday, email FROM users " . 
+                "WHERE user = '".$_COOKIE['user']."'";
+        $stmt2 = "SELECT FROM hobbies WHERE name = '".$_COOKIE['user']."'";
+        include './open_connection.php';
 	echo "<br>";
 	echo "<div class=\"container\">";
-    echo "<div class=\"jumbotron\">";      
+        echo "<div class=\"jumbotron\">";      
 	echo "<h1>Your Profile</h1>";
-    echo "<form action=\"updateProfile.php\">";
-    echo "<button class=\"btn btn-md btn-primary\" type=\"submit\" width=\"10px;\">Update Profile</button>";
-    echo "</form>";
+        echo "<div class=\"row\">";
+        echo "<div class=\"col-md-4\">";
+        echo "<form action=\"updateProfile.php\">";
+        echo "<button class=\"btn btn-md btn-primary\" type=\"submit\" width=\"10px;\">Update Profile</button>";
+        echo "</form>";
+        echo "</div>";
+        echo "<div class=\"col-md-4\">";
+        echo "<form action=\"logout.php\">";
+        echo "<button class=\"btn btn-md btn-primary\" type=\"submit\" width=\"10px;\">Logout</button>";
+        echo "</form>";
+        echo "</div>";
+        echo "</div>";
 	echo "<div class=\"row\">";
-    echo "<br>";
-	$stmt = $pdo->prepare("SELECT name, gender, major, location, bday, email FROM users WHERE user = '".$_COOKIE['user']."'");
-	$stmt->execute();
-	while ($info = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo "<br>";
+	foreach ($db->query($stmt) as $info) {
             echo "<div class=\"col-md-4\">";
-            echo "<img src=\"http://pickaface.net/includes/themes/clean/img/slide4.png\" class=\"img-thumbnail\" width=\"200\" height=\"236\"/>";
+            echo "<img src=\"http://pickaface.net/includes/themes/clean/img/slide4.png\" class=\"img-thumbnail\" width=\"200\" height=\"236\"/><br><br>";
+            echo "<div class=\"hobbies\">";
+            echo "<b>People who share common interests with you:</b><br>";
+            echo "Joe Schmoe<br>";
+            echo "Mike Mangini<br>";
+            echo "</div>";
             echo "<div class=\"notification\">";
             echo "</div>";
             echo "</div>";
             echo "<div class=\"form-group\">";
             echo "<div class=\"col-md-3\">" .
-	             "<label>Name: <br>"     . $info['name']     . "</label><br>" .
+	         "<label>Name: <br>"     . $info['name']     . "</label><br>" .
                  "<hr>" .
             	 "<label>Gender: <br>"   . $info['gender']   . '</label><br>' .
             	 "<hr>" .
@@ -58,9 +74,10 @@
             	 "<hr>" .
             	 "<label>Birthday: <br>" . $info['bday']     . '</label><br>' .
             	 "<hr>" .
-            	 "<label>Email: <br>"    . $info['email']    . '</label><br>';
-            echo "</div>";
+            	 "<label>Email: <br>"    . $info['email']    . '</label><br>' .  
+                 "<hr>";
         }
+        echo "</div>";
 	echo "</div>";
 	echo "</div>";
 	echo "</div>";
