@@ -32,7 +32,6 @@
 	$stmt = "SELECT name, gender, major, location, bday, email FROM users " . 
                 "WHERE user = '".$_COOKIE['user']."'";
         $stmt2 = "SELECT FROM hobbies WHERE name = '".$_COOKIE['user']."'";
-        include './open_connection.php';
 	echo "<br>";
 	echo "<div class=\"container\">";
         echo "<div class=\"jumbotron\">";      
