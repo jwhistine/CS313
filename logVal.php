@@ -19,7 +19,7 @@
             $count = mysqli_num_rows($result);
             
             if ($count > 0) {
-                setcookie("user", $username, time(), "/");
+                setcookie("user", $username, time() + (86400 * 30), "/");
                 header("Location: profile.php");
 				exit();
             }
